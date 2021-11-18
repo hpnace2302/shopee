@@ -1,6 +1,6 @@
 import React from 'react'
 import SideBarShopee from './sidebar'
-import HomeComponent from '../../pages/home/index'
+// import HomeComponent from '../../pages/home/index'
 
 const ContentShopee = (props) => {
   const handleFilters = (filters, category) => {

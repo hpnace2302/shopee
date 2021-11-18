@@ -1,39 +1,39 @@
-import React, {useState, useEffect} from 'react'
-import { Collapse, Checkbox } from 'antd'
+import React, { useEffect} from 'react'
+// import { Collapse, Checkbox } from 'antd'
 
 // const { Panel } = Collapse
-import { getLoadingProduct, getMessageNotFoundProduct, getDataProducts } from '../../pages/home/reselect'
-import { createStructuredSelector } from 'reselect'
-import { useDispatch, useSelector } from 'react-redux'
+// import { getLoadingProduct, getMessageNotFoundProduct, getDataProducts } from '../../pages/home/reselect'
+// import { createStructuredSelector } from 'reselect'
+import { useDispatch } from 'react-redux'
 import * as actions from '../../pages/home/actions'
 
 const SideBarShopee = (props) => {
-  const { data, loading, mess } = useSelector(createStructuredSelector({
-    data: getDataProducts,
-    loading: getLoadingProduct,
-    mess: getMessageNotFoundProduct,
-  }))
+  // const { data, loading, mess } = useSelector(createStructuredSelector({
+  //   data: getDataProducts,
+  //   loading: getLoadingProduct,
+  //   mess: getMessageNotFoundProduct,
+  // }))
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(actions.getDataProducts())
   },[dispatch])
 
-  const [products, setProduct] = useState(data)
+  // const [products, setProduct] = useState(data)
 
-  console.log(products);
+  // console.log(products);
   
-  const product = []
+  // const product = []
 
-  const filterIphone = (id) => {
-    products.map((item) => {
-      if (item.cate_id === id) {
-        product.push(item)
-      }
-      console.log('product:', product);
-      return product
-    })
-  }
+  // const filterIphone = (id) => {
+  //   products.map((item) => {
+  //     if (item.cate_id === id) {
+  //       product.push(item)
+  //     }
+  //     console.log('product:', product);
+  //     return product
+  //   })
+  // }
 
   const productType = [
     {
@@ -54,13 +54,13 @@ const SideBarShopee = (props) => {
     }
   ]
 
-  const [checked, setChecked] = useState([])
-  const handleClick = (value) => {
+  // const [checked, setChecked] = useState([])
+  // const handleClick = (value) => {
 
     // console.log(value);
 
     // const currentIndex = checked.indexOf(value)
-    const newChecked = value
+    // const newChecked = value
 
     // if (currentIndex === -1) {
     //   newChecked.push(value)
@@ -69,10 +69,10 @@ const SideBarShopee = (props) => {
     // }
     // console.log(props);
 
-    setChecked(newChecked)
+    // setChecked(newChecked)
 
-    props.handleFilters(newChecked)
-  }
+    // props.handleFilters(newChecked)
+  // }
 
   
 
@@ -94,7 +94,10 @@ const SideBarShopee = (props) => {
                 {productType.map((item => (
                   <React.Fragment key={item.id}>
                     <li className="category-item">
-                        <div onClick={() => filterIphone(item.id)} className="category-item__link">
+                        <div 
+                          // onClick={() => filterIphone(item.id)} 
+                          className="category-item__link"
+                        >
                           {item.title}
                         </div>
                     </li>
