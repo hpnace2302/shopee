@@ -546,6 +546,7 @@ a {
     display: flex;
     align-items: center;
     margin: 0 8px;
+    justify-content: space-between;
 }
 
 .header__mobile-search {
@@ -584,6 +585,7 @@ a {
     /* overflow: hidden; */
     display: flex;
     align-items: center;
+    max-width: 50%;
 }
 
 .header__search-input-wrap{
@@ -1621,8 +1623,8 @@ i.home-product-item__like-icon-fill {
 .brand__container {
   /* background-image: url('https://cf.shopee.vn/file/62160f74aa5cffa160b2062658d2be75_tn'); */
   position: relative;
-  width: 191px;
-  height: 191px;
+  width: 208.33px;
+  height: 208.33px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
