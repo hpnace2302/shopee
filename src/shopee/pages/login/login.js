@@ -37,6 +37,7 @@ const Login = () => {
         <Row style={{backgroundColor: 'white', height: '500px', marginTop: '30px', paddingTop: '50px'}}>
           <Col span={12} offset={6}>
             <h1 style={{textAlign: 'center'}}>Đăng Nhập</h1>
+            <h3 style={{textAlign: 'center'}}>Tài khoản: admin - Mật khẩu: 123</h3>
             {errorLogin !== null && <p style={{color: 'red', textAlign: 'center'}}>{errorLogin}</p>}
             <Form
               style={{paddingLeft: '50px'}}

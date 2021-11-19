@@ -158,8 +158,8 @@ const DetailShopee = () => {
           </div>
           <h1>Sản phẩm tương tự</h1>
           <div style={{display: 'flex', flexWrap: 'wrap', paddingBottom: '10px'}} className='row sm-gutter'>
-              {/* if (item.cate_id === detailData.cate_id && item.id !== detailData.id) { */}
             {dataAllProduct.allProducts.map((item,key) => {
+              if (item.cate_id === detailData.cate_id && item.id !== detailData.id) {
                 return (
                   <div className="col l-2-4"
                     key={key}
@@ -168,8 +168,8 @@ const DetailShopee = () => {
                     <CardShopee data={item} />
                   </div>
                 )
+              }
             })}
-              {/* } */}
           </div>
         </div>
       </div>
