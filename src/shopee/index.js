@@ -15,7 +15,7 @@ const { store, persistor } = configStore()
 
 const Shopee = () => {
   return (
-    <Provider store={store}>
+  <Provider store={store}>
     <PersistGate loading={<Skeleton active/>} persistor={persistor}>
       <RoutesApp/>  
     </PersistGate>

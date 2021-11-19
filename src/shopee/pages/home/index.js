@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect'
 // import LayoutShopee from '../../component/layout'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from './actions'
-import { getLoadingProduct, getMessageNotFoundProduct, getDataProductAllProduct } from './reselect'
+import { getLoadingProduct, getMessageNotFoundProduct, getDataProducts } from './reselect'
 import { helper } from '../../helper/common'
 import { Skeleton } from 'antd'
 import '../../assets/main.css'
@@ -14,7 +14,7 @@ import CardShopee from './component/card';
 const HomeShopee = (props) => {
   const dispatch = useDispatch()
   const { data, loading, mess } = useSelector(createStructuredSelector({
-    data: getDataProductAllProduct,
+    data: getDataProducts,
     loading: getLoadingProduct,
     mess: getMessageNotFoundProduct,
   }))
@@ -55,7 +55,7 @@ const HomeShopee = (props) => {
     }
     return (
       <>
-        {data.map((item,key) => (
+        {data.allProducts.map((item,key) => (
         <div className="col l-2-4"
           key={key}
         >
