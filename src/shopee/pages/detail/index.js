@@ -168,6 +168,10 @@ const DetailShopee = () => {
                     <CardShopee data={item} />
                   </div>
                 )
+              } else {
+                return (
+                  <></>
+                )
               }
             })}
           </div>
