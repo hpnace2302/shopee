@@ -264,6 +264,8 @@ html{
 }
 /* End CSS pagination */
 
-
+.table {
+  border: 1px solid #000;
+}
     
 

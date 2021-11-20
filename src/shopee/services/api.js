@@ -15,6 +15,9 @@ let dataProducts = {
       image: 'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-sierra-blue-600x600.jpg',
       images: [
         {
+          image: 'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-5.jpg',
+        },
+        {
           image: 'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-1.jpg',
         },
         {
@@ -25,9 +28,6 @@ let dataProducts = {
         },
         {
           image: 'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-4.jpg',
-        },
-        {
-          image: 'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-5.jpg',
         },
         {
           image: 'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-6.jpg',

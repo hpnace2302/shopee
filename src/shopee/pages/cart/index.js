@@ -61,11 +61,10 @@ const CartComponent = () => {
   return (
     <>
       <HeaderShopee/>
-        <div className="grid wide">
+        <div className="grid wide" style={{height: '500px'}}>
           <Col span={24}>
           <h1 style={{margin: '20px', textAlign: 'center'}}>Thông tin giỏ hàng</h1>
-          {itemsCart.map((item, index) => (
-            <Row
+            {/* <Row
               key={index}
               style={{
                 margin: '5px 0px', 
@@ -95,8 +94,37 @@ const CartComponent = () => {
                   onClick={() => removeItemCartById(item.id)}
                 >Xoá</Button>
               </Col>
-            </Row>
-          ))}
+            </Row> */}
+            <table style={{border: "1px solid #000", width: "100%"}}>
+              <thead>
+                <tr style={{display: "flex", textAlign: "center", justifyContent: "space-between", padding: "10px 10px 10px 10px", border: "1px solid #000", alignItems: "center"}}>
+                  <th className="c-1">Ảnh</th>
+                  <th className="c-5">Tên sản phẩm</th>
+                  <th className="c-2">Giá</th>
+                  <th className="c-2">Số lượng</th>
+                  <th className="c-2">Số tiền</th>
+                </tr>
+              </thead>
+              {itemsCart.map((item, index) => (
+              <tbody  key={index}>
+                <tr style={{display:"flex", justifyContent: "space-between", padding: "0 10px 10px 10px", textAlign: "center", border: "1px solid #000", alignItems: "center"}}>
+                  <td className="c-1"><Image src={item.image} style={{width: 100}}/></td>
+                  <td className="c-5">{item.name}</td>
+                  <td className="c-2"><NumberFormat value={item.price} displayType={'text'} thousandSeparator={true} /> VNĐ</td>
+                  <td className="c-2"><InputNumber
+                    min={1} 
+                    max={item.quantity} 
+                    value={item.qty}
+                    onChange={ val => changeItemCart(item.id, val)}
+                  /><Button 
+                    type="dashed"
+                    onClick={() => removeItemCartById(item.id)}
+                  >Xoá</Button></td>
+                  <td className="c-2"><NumberFormat value={parseInt(item.price)*parseInt(item.qty)} displayType={'text'} thousandSeparator={true} /> VNĐ</td>
+                </tr>
+              </tbody>
+              ))}
+            </table>
             <div style={{clear: 'both'}}></div>
             <h3 style={{textAlign: 'right'}}>
             Tổng tiền: <NumberFormat value={totalMoney} displayType={'text'} thousandSeparator={true} /> VNĐ

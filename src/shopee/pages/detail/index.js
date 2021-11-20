@@ -170,7 +170,7 @@ const DetailShopee = () => {
                 )
               } else {
                 return (
-                  <></>
+                  <div key={key} style={{display: 'none'}}>Lỗi</div>
                 )
               }
             })}
