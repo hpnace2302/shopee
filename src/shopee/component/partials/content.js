@@ -20,7 +20,7 @@ const ContentShopee = (props) => {
             <button className="home-filter__btn btn btn-primary">Mới nhất</button>
             <button className="home-filter__btn btn">Bán chạy</button>
 
-            <div className="select-input">
+            <div style={{cursor: 'pointer'}} className="select-input">
                 <span className="select-input__label">Giá</span>
                 <i className="select-input__icon fas fa-chevron-down"></i>
                 <ul className="select-input__list">

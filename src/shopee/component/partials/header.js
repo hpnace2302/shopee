@@ -130,7 +130,10 @@ const HeaderShopee = () => {
                   
                     >
                       <div 
-                      className="user header__navbar-item header__navbar-item--strong header__navbar-item-login" key="user">Hi : {infoUser}</div>
+                        style={{cursor: 'pointer'}}
+                        className="user header__navbar-item header__navbar-item--strong header__navbar-item-login" key="user">
+                        Hi : {infoUser}
+                      </div>
                       <ul className="header__navbar-user-menu">
                         <li className="header__navbar-user-menu-item">
                             <div>Shop của tôi</div>

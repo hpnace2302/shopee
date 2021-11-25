@@ -14,6 +14,7 @@ import { Skeleton } from 'antd'
 const { store, persistor } = configStore()
 
 const Shopee = () => {
+  document.title = 'Shopee Fake'
   return (
   <Provider store={store}>
     <PersistGate loading={<Skeleton active/>} persistor={persistor}>

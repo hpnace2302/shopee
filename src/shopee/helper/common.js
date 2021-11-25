@@ -72,5 +72,5 @@ export const helper = {
   saveTokenLocalStorage,
   getUsername,
   removeToken,
-  fakeAuthLogin
+  fakeAuthLogin,
 }

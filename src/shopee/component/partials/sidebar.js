@@ -1,39 +1,7 @@
-import React, { useEffect} from 'react'
-// import { Collapse, Checkbox } from 'antd'
-
-// const { Panel } = Collapse
-// import { getLoadingProduct, getMessageNotFoundProduct, getDataProducts } from '../../pages/home/reselect'
-// import { createStructuredSelector } from 'reselect'
-import { useDispatch } from 'react-redux'
-import * as actions from '../../pages/home/actions'
+import React from 'react'
+import { helper } from '../../helper/common'
 
 const SideBarShopee = (props) => {
-  // const { data, loading, mess } = useSelector(createStructuredSelector({
-  //   data: getDataProducts,
-  //   loading: getLoadingProduct,
-  //   mess: getMessageNotFoundProduct,
-  // }))
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(actions.getDataProducts())
-  },[dispatch])
-
-  // const [products, setProduct] = useState(data)
-
-  // console.log(products);
-  
-  // const product = []
-
-  // const filterIphone = (id) => {
-  //   products.map((item) => {
-  //     if (item.cate_id === id) {
-  //       product.push(item)
-  //     }
-  //     console.log('product:', product);
-  //     return product
-  //   })
-  // }
 
   const productType = [
     {
@@ -54,27 +22,9 @@ const SideBarShopee = (props) => {
     }
   ]
 
-  // const [checked, setChecked] = useState([])
-  // const handleClick = (value) => {
-
-    // console.log(value);
-
-    // const currentIndex = checked.indexOf(value)
-    // const newChecked = value
-
-    // if (currentIndex === -1) {
-    //   newChecked.push(value)
-    // } else {
-    //   newChecked.splice(currentIndex, 1)
-    // }
-    // console.log(props);
-
-    // setChecked(newChecked)
-
-    // props.handleFilters(newChecked)
-  // }
-
-  
+  const filterProducts = (id) => {
+    return id
+  }
 
   return (
     <div className="col l-2 m-0 c-0">
@@ -95,7 +45,7 @@ const SideBarShopee = (props) => {
                   <React.Fragment key={item.id}>
                     <li className="category-item">
                         <div 
-                          // onClick={() => filterIphone(item.id)} 
+                          onClick={() => filterProducts(item.id)} 
                           className="category-item__link"
                         >
                           {item.title}
