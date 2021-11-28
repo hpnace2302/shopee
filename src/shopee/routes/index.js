@@ -66,28 +66,22 @@ const RoutesApp = () => {
         <Switch>
           <PrivateRouteShopee path="/" exact>
             <LayoutShopee>
-                <HomeShopee/>
+              <HomeShopee/>
             </LayoutShopee>
           </PrivateRouteShopee>
           <PrivateRouteShopee path="/home">
             <LayoutShopee>
-                <HomeShopee/>
+              <HomeShopee/>
             </LayoutShopee>
           </PrivateRouteShopee>
           <PrivateRouteShopee path="/cart">
-            {/* <LayoutShopee> */}
-                <CartShopee/>
-            {/* </LayoutShopee> */}
+            <CartShopee/>
           </PrivateRouteShopee>
           <PrivateRouteShopee path="/product/:slug/:id">
-            {/* <LayoutShopee> */}
-                <DetailShopee/>
-            {/* </LayoutShopee> */}
+            <DetailShopee/>
           </PrivateRouteShopee>
           <IsLoginUserShopee path="/login">
-            {/* <LayoutShopee> */}
-              <LoginShopee/>
-            {/* </LayoutShopee> */}
+            <LoginShopee/>
           </IsLoginUserShopee>
         </Switch>
       </Suspense>

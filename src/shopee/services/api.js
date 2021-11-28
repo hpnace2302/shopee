@@ -7,9 +7,10 @@ let dataProducts = {
     {
       id: 1,
       cate_id: 1,
+      popular: 23,
       name: "Apple iPhone13 Pro Max",
       price: 37000000,
-      quantitySold: 30,
+      quantitySold: 31,
       quantity: 2,
       discount: 20,
       image: 'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-sierra-blue-600x600.jpg',
@@ -52,9 +53,10 @@ let dataProducts = {
     {
       id: 2,
       cate_id: 1,
+      popular: 26,
       name: "Apple iPhone12 Pro Max",
       price: 30000000,
-      quantitySold: 30,
+      quantitySold: 29,
       quantity: 100,
       discount: 15,
       image: 'https://cdn.tgdd.vn/Products/Images/42/213033/iphone-12-pro-max-xanh-duong-new-600x600-600x600.jpg',
@@ -97,6 +99,7 @@ let dataProducts = {
     {
       id: 3,
       cate_id: 1,
+      popular: 23,
       name: "Apple iPhone12 Pro",
       price: 27000000,
       quantitySold: 30,
@@ -142,6 +145,7 @@ let dataProducts = {
     {
       id: 4,
       cate_id: 1,
+      popular: 27,
       name: "Apple iPhone13",
       price: 26000000,
       quantitySold: 30,
@@ -187,6 +191,7 @@ let dataProducts = {
     {
       id: 5,
       cate_id: 2,
+      popular: 20,
       name: "AirPods Pro",
       price: 7000000,
       quantitySold: 30,
@@ -214,6 +219,7 @@ let dataProducts = {
     {
       id: 6,
       cate_id: 2,
+      popular: 21,
       name: "AirPods 2",
       price: 3000000,
       quantitySold: 30,
@@ -238,6 +244,7 @@ let dataProducts = {
     {
       id: 7,
       cate_id: 2,
+      popular: 25,
       name: "AirPods Max",
       price: 12000000,
       quantitySold: 30,
@@ -253,6 +260,7 @@ let dataProducts = {
     {
       id: 8,
       cate_id: 3,
+      popular: 28,
       name: "Apple Watch S6",
       price: 10000000,
       quantitySold: 30,
@@ -289,6 +297,7 @@ let dataProducts = {
     {
       id: 9,
       cate_id: 3,
+      popular: 29,
       name: "Apple Watch S3",
       price: 5000000,
       quantitySold: 30,

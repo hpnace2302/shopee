@@ -29,21 +29,6 @@ const HomeShopee = (props) => {
     }
   ]
 
-  const initFilter = {
-    category: [],
-}
-  const dispatch = useDispatch()
-  const { data, loading, mess } = useSelector(createStructuredSelector({
-    data: getDataProductAllProduct,
-    loading: getLoadingProduct,
-    mess: getMessageNotFoundProduct,
-  }))
-  useEffect(() => {
-    dispatch(actions.getDataProducts())
-  },[dispatch])
-
-  // const productList = productData.getAllProducts()
-
   const options = [
     {
       value: '',
@@ -58,6 +43,34 @@ const HomeShopee = (props) => {
       title: 'Giá : Cao đến thấp'
     },
   ]
+
+  const optionsProduct = [
+    {
+      id: 1,
+      title: 'Phổ biến'
+    },
+    {
+      id: 2,
+      title: 'Mới nhất'
+    },
+    {
+      id: 3,
+      title: 'Bán chạy'
+    }
+  ]
+
+  const initFilter = {
+    category: [],
+}
+  const dispatch = useDispatch()
+  const { data, loading, mess } = useSelector(createStructuredSelector({
+    data: getDataProductAllProduct,
+    loading: getLoadingProduct,
+    mess: getMessageNotFoundProduct,
+  }))
+  useEffect(() => {
+    dispatch(actions.getDataProducts())
+  },[dispatch])
 
   const [products, setProducts] = useState(data)
 
@@ -147,18 +160,18 @@ const HomeShopee = (props) => {
       products.sort((a, b) => (a.id > b.id ? 1 : -1));
     }
     setProducts(products)
-  };
+  }
 
   const SideBarShopee = () => {
     return (
       <div className="col l-2 m-0 c-0">
         <div className="brand">
-            <div className="brand__container">
-              <img src="https://cf.shopee.vn/file/62160f74aa5cffa160b2062658d2be75_tn" alt="" className="brand__container--avatar"/>
-              <div className="brand__container--name">Apple Store</div>
-              <div className="brand__container--status">Đang hoạt động</div>
-            </div>
+          <div className="brand__container">
+            <img src="https://cf.shopee.vn/file/62160f74aa5cffa160b2062658d2be75_tn" alt="" className="brand__container--avatar"/>
+            <div className="brand__container--name">Apple Store</div>
+            <div className="brand__container--status">Đang hoạt động</div>
           </div>
+        </div>
         <nav className="category">
             <h3 className="category__heading">
                 Danh mục
@@ -184,6 +197,46 @@ const HomeShopee = (props) => {
     )
   }
 
+  const handleClick = (id, items) => {
+    const products = items.slice()
+    const newId = id - 1
+    if (id === 1) {
+      products.sort((a, b) => a.popular - b.popular)
+      const btn = document.querySelectorAll('.home-filter__btn')
+      if (btn[1].classList.value.indexOf("btn-primary")) {
+        btn[1].classList.remove("btn-primary")
+      }
+      if (btn[2].classList.value.indexOf("btn-primary")) {
+        btn[2].classList.remove("btn-primary")
+      }
+      btn[newId].classList.add('btn-primary')
+    }
+    if (id === 2) {
+      products.sort((a, b) => a.id - b.id)
+      const btn = document.querySelectorAll('.home-filter__btn')
+      if (btn[0].classList.value.indexOf("btn-primary")) {
+        btn[0].classList.remove("btn-primary")
+      }
+      if (btn[2].classList.value.indexOf("btn-primary")) {
+        btn[2].classList.remove("btn-primary")
+      }
+      btn[newId].classList.add('btn-primary')
+    }
+    if (id === 3) {
+      products.sort((a, b) => b.quantitySold - a.quantitySold)
+      const btn = document.querySelectorAll('.home-filter__btn')
+      if (btn[0].classList.value.indexOf("btn-primary")) {
+        btn[0].classList.remove("btn-primary")
+      }
+      if (btn[1].classList.value.indexOf("btn-primary")) {
+        btn[1].classList.remove("btn-primary")
+      }
+      btn[newId].classList.add('btn-primary')
+    }
+    setProducts(products)
+    return {}
+  }
+
   return (
     <>
     <SideBarShopee/>
@@ -191,42 +244,59 @@ const HomeShopee = (props) => {
 
         {/* <!-- Home Filter --> */}
         <div className="home-filter hide-on-mobile-tablet">
-            <span className="home-filter__label">Sắp xếp theo</span>
-            <button className="home-filter__btn btn">Phổ biến</button>
-            <button className="home-filter__btn btn btn-primary">Mới nhất</button>
-            <button className="home-filter__btn btn">Bán chạy</button>
-            <select
-              className="select-input"
-              onChange={(event) => {
-                sortProducts(
-                  products,
-                  event.target.value
-                );
-              }}
-            >
-              {
-                options.map((item, index) => (
-                  <option key={index} value={item.value}>{item.title}</option>
-                )) 
-              }
-            </select>
+          <span className="home-filter__label">Sắp xếp theo</span>
+          {
+            optionsProduct.map((item, index) => (
+              <button 
+                onClick={() => handleClick(item.id, products)}
+                key={index} 
+                className={item.id === 2 ? "home-filter__btn btn btn-primary" : "home-filter__btn btn"}
+              >
+                {item.title}
+              </button>
+            ))
+          }
+          {/* <button className="home-filter__btn btn">Mới nhất</button>
+          <button className="home-filter__btn btn">Bán chạy</button> */}
+          <select
+            className="select-input"
+            onChange={(event) => {
+              sortProducts(
+                products,
+                event.target.value
+              );
+            }}
+          >
+            {
+              options.map((item, index) => (
+                <option key={index} value={item.value}>{item.title}</option>
+              )) 
+            }
+          </select>
 
-            <div className="home-filter__page">
-                <span className="home-filter__page-num">
-                    <span className="home-filter__page-current">1</span>/1
-                </span>
+          <div className="home-filter__page">
+            {/* <Pagination 
+              className="home-filter__page-num"
+              style={{display: 'flex', listStyleType: 'none'}} 
+              simple 
+              defaultCurrent={1} 
+              total={products.length} 
+              defaultPageSize={2}
+            /> */}
+            <span className="home-filter__page-num">
+              <span className="home-filter__page-current">1</span>/1
+            </span>
 
-                <div className="home-filter__page-control">
-                    <div className="home-filter_page-btn home-filter_page-btn--disabled">
-                        <i className="home-filter__page-icon fas fa-chevron-left"></i>
-                    </div>
-                    <div className="home-filter_page-btn ">
-                        <i className="home-filter__page-icon fas fa-chevron-right"></i>
-                    </div>
-                </div>
+            <div className="home-filter__page-control">
+              <div className="home-filter_page-btn home-filter_page-btn--disabled">
+                <i className="home-filter__page-icon fas fa-chevron-left"></i>
+              </div>
+              <div className="home-filter_page-btn ">
+                <i className="home-filter__page-icon fas fa-chevron-right"></i>
+              </div>
             </div>
+          </div>
         </div>
-
         <nav className="mobile-category">
             <ul className="mobile-category__list">
                 <li className="mobile-category__item">
@@ -246,7 +316,8 @@ const HomeShopee = (props) => {
                 </li>
                 <li className="mobile-category__item">
                     <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li><li className="mobile-category__item">
+                </li>
+                <li className="mobile-category__item">
                     <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
                 </li>
                 <li className="mobile-category__item">
@@ -279,3 +350,4 @@ const HomeShopee = (props) => {
 }
 
 export default React.memo(HomeShopee)
+
