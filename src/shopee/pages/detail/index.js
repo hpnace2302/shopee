@@ -49,6 +49,8 @@ const DetailShopee = () => {
     messCart: getErrorAddCart,
     dataAllProduct: getDataProducts
   }))
+  
+  console.log(detailData);
 
   useEffect(() => {
     dispatch(actions.getDataProductById(id))
@@ -158,7 +160,7 @@ const DetailShopee = () => {
           </div>
           <h1>Sản phẩm tương tự</h1>
           <div style={{display: 'flex', flexWrap: 'wrap', paddingBottom: '10px'}} className='row sm-gutter'>
-            {dataAllProduct.allProducts.map((item,key) => {
+            {dataAllProduct.map((item,key) => {
               if (item.cate_id === detailData.cate_id && item.id !== detailData.id) {
                 return (
                   <div className="col l-2-4"

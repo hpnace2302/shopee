@@ -400,7 +400,7 @@ let dataProducts = {
   ]
 }
 
-const getAllDataProducts = async() => {
+const getAllDataProducts = () => {
   return dataProducts
 }
 

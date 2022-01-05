@@ -14,7 +14,7 @@ export const getMessageNotFoundProduct = createSelector(
 
 export const getDataProducts = createSelector(
   homeState,
-  item => item.allProduct
+  item => item.allProduct.allProducts
 );
 
 export const getDataProductAllProduct = createSelector(

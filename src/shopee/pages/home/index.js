@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect'
 // import LayoutShopee from '../../component/layout'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from './actions'
-import { getLoadingProduct, getMessageNotFoundProduct, getDataProductAllProduct } from './reselect'
+import { getLoadingProduct, getMessageNotFoundProduct, getDataProducts } from './reselect'
 import { helper } from '../../helper/common'
 import { Skeleton } from 'antd'
 import '../../assets/main.css'
@@ -64,7 +64,7 @@ const HomeShopee = (props) => {
 }
   const dispatch = useDispatch()
   const { data, loading, mess } = useSelector(createStructuredSelector({
-    data: getDataProductAllProduct,
+    data: getDataProducts,
     loading: getLoadingProduct,
     mess: getMessageNotFoundProduct,
   }))
@@ -126,6 +126,9 @@ const HomeShopee = (props) => {
         <h3>{mess.message}</h3>
       )
     }
+    // if(!helper.isEmptyObject(dataProducts)) {
+    //   return (<Skeleton active />)
+    // }
     return (
       <>
         {dataProducts.map((item,key) => {
@@ -341,7 +344,7 @@ const HomeShopee = (props) => {
         {/* <!-- Home Product --> */}
         <div className="home-product">
             <div className="row sm-gutter">
-            <HomeShopee dataProducts={products}/>
+              <HomeShopee dataProducts={products}/>
             </div>
         </div>
       </div>

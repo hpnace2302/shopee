@@ -42,7 +42,7 @@ const CartComponent = () => {
             </Row>
             <h1>Có thể bạn cũng thích</h1>
             <div style={{display: 'flex', flexWrap: 'wrap', paddingBottom: '10px'}} className='row sm-gutter'>
-              {data.allProducts.map((item,key) => {
+              {data.map((item,key) => {
                   return (
                     <div className="col l-2-4"
                         key={key}
