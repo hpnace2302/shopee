@@ -6,7 +6,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import { Skeleton } from 'antd'
-import LayoutShopee from '../component/layout'
+// import LayoutShopee from '../component/layout'
 import { helper } from '../helper/common'
 
 
@@ -33,7 +33,6 @@ function IsLoginUserShopee({ children, ...rest }) {
         )
       }
     >
-
     </Route>
   )
 }
@@ -65,14 +64,14 @@ const RoutesApp = () => {
       <Suspense fallback={<Skeleton active />}>
         <Switch>
           <PrivateRouteShopee path="/" exact>
-            <LayoutShopee>
+            {/* <LayoutShopee> */}
               <HomeShopee/>
-            </LayoutShopee>
+            {/* </LayoutShopee> */}
           </PrivateRouteShopee>
           <PrivateRouteShopee path="/home">
-            <LayoutShopee>
+            {/* <LayoutShopee> */}
               <HomeShopee/>
-            </LayoutShopee>
+            {/* </LayoutShopee> */}
           </PrivateRouteShopee>
           <PrivateRouteShopee path="/cart">
             <CartShopee/>

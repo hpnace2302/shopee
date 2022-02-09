@@ -49,8 +49,6 @@ const DetailShopee = () => {
     messCart: getErrorAddCart,
     dataAllProduct: getDataProducts
   }))
-  
-  console.log(detailData);
 
   useEffect(() => {
     dispatch(actions.getDataProductById(id))

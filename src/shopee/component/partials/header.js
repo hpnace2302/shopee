@@ -8,7 +8,7 @@ import { getItemsCart } from '../../pages/cart/reselect'
 import { createStructuredSelector } from 'reselect'
 import { useSelector } from 'react-redux';
 
-const HeaderShopee = () => {
+const HeaderShopee = ({change}) => {
   const infoUser = helper.getUsername()
   const history = useHistory()
   const { count } = useSelector(createStructuredSelector({
@@ -224,7 +224,7 @@ const HeaderShopee = () => {
 
                 <div className="header__search">
                     <div className="header__search-input-wrap">
-                        <input type="text" className="header__search-input" placeholder="Tìm kiếm sản phẩm"/>
+                        <input type="text" onKeyUp={change} className="header__search-input" placeholder="Tìm kiếm sản phẩm"/>
 
                         {/* <!-- Search history --> */}
                         {/* <div className="header__search-history">

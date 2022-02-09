@@ -1,13 +1,16 @@
 import React from 'react';
-import HeaderShopee from './partials/header'
+// import HeaderShopee from './partials/header'
+// import FooterShopee from './partials/footer'
 // import SideBarShopee from './partials/sidebar'
-import FooterShopee from './partials/footer'
 // import ContentShopee from './partials/content'
 
 const LayoutShopee = (props) => {
+  // const handleChange = (e) => {
+  //   console.log(e.target.value);
+  // }
   return (
     <>
-      <HeaderShopee/>
+      {/* <HeaderShopee change={handleChange}/> */}
       <div className="app_container">
             <div className="grid wide">
                 <div className="row sm-gutter app__content">
@@ -15,7 +18,7 @@ const LayoutShopee = (props) => {
                 </div>
             </div>
         </div>
-        <FooterShopee/>
+        {/* <FooterShopee/> */}
     </>
   )
 }

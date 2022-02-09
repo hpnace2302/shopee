@@ -2,6 +2,8 @@ import React,{useState, useEffect, useCallback} from 'react'
 // import ContentShopee from '../../component/partials/content'
 import { createStructuredSelector } from 'reselect'
 // import LayoutShopee from '../../component/layout'
+import HeaderShopee from '../../component/partials/header'
+import FooterShopee from '../../component/partials/footer'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from './actions'
 import { getLoadingProduct, getMessageNotFoundProduct, getDataProducts } from './reselect'
@@ -61,7 +63,7 @@ const HomeShopee = (props) => {
 
   const initFilter = {
     category: [],
-}
+  }
   const dispatch = useDispatch()
   const { data, loading, mess } = useSelector(createStructuredSelector({
     data: getDataProducts,
@@ -79,38 +81,38 @@ const HomeShopee = (props) => {
   // const [option, setOption] = useState(options)
 
    const filterSelect = (type, checked, item) => {
-      if (checked) {
-          switch(type) {
-              case "CATEGORY":
-                  setFilter({...filter, category: [...filter.category, item.id]})
-                  break
-              default:
-          }
-      } else {
-          switch(type) {
-              case "CATEGORY":
-                  const newCategory = filter.category.filter(e => e !== item.id)
-                  setFilter({...filter, category: newCategory})
-                  break
-              default:
-          }
+    if (checked) {
+      switch(type) {
+        case "CATEGORY":
+          setFilter({...filter, category: [...filter.category, item.id]})
+          break
+        default:
       }
+    } else {
+      switch(type) {
+        case "CATEGORY":
+          const newCategory = filter.category.filter(e => e !== item.id)
+          setFilter({...filter, category: newCategory})
+          break
+        default:
+      }
+    }
   }
 
   // const clearFilter = () => setFilter(initFilter)
 
   const updateProducts = useCallback(
-      () => {
-          let temp = data
+    () => {
+      let temp = data
 
-          if (filter.category.length > 0) {
-              temp = temp.filter(e => filter.category.includes(e.cate_id))
-          }
+      if (filter.category.length > 0) {
+        temp = temp.filter(e => filter.category.includes(e.cate_id))
+      }
 
-          // setOption(option)
-          setProducts(temp)
-      },
-      [filter, data],
+      // setOption(option)
+      setProducts(temp)
+    },
+    [filter, data],
   )
 
   useEffect(() => {
@@ -131,15 +133,15 @@ const HomeShopee = (props) => {
     // }
     return (
       <>
-        {dataProducts.map((item,key) => {
-          return (
+          {dataProducts.map((item,key) => {
+            return (
               <div className="col l-2-4"
                 key={key}
               >
-              <CardShopee data={item} />
+                <CardShopee data={item} />
               </div>
-          )
-        })}
+            )
+          })}
       </>
     )
   }
@@ -240,114 +242,122 @@ const HomeShopee = (props) => {
     return {}
   }
 
+  const handleChange = (e) => {
+    const searchString = e.target.value.toLowerCase()
+    const filterProduct = data.filter((product) => {
+      return (
+        product.name.toLowerCase().includes(searchString)
+      )
+    })
+    setProducts(filterProduct)
+  }
+
   return (
     <>
-    <SideBarShopee/>
-    <div className="col l-10 m-12 c-12">
+    <HeaderShopee change={handleChange}/>
+      <div className="app_container">
+        <div className="grid wide">
+          <div className="row sm-gutter app__content">
+            <SideBarShopee/>
+            <div className="col l-10 m-12 c-12">
 
-        {/* <!-- Home Filter --> */}
-        <div className="home-filter hide-on-mobile-tablet">
-          <span className="home-filter__label">Sắp xếp theo</span>
-          {
-            optionsProduct.map((item, index) => (
-              <button 
-                onClick={() => handleClick(item.id, products)}
-                key={index} 
-                className={item.id === 2 ? "home-filter__btn btn btn-primary" : "home-filter__btn btn"}
-              >
-                {item.title}
-              </button>
-            ))
-          }
-          {/* <button className="home-filter__btn btn">Mới nhất</button>
-          <button className="home-filter__btn btn">Bán chạy</button> */}
-          <select
-            className="select-input"
-            onChange={(event) => {
-              sortProducts(
-                products,
-                event.target.value
-              );
-            }}
-          >
-            {
-              options.map((item, index) => (
-                <option key={index} value={item.value}>{item.title}</option>
-              )) 
-            }
-          </select>
+                {/* <!-- Home Filter --> */}
+                <div className="home-filter hide-on-mobile-tablet">
+                  <span className="home-filter__label">Sắp xếp theo</span>
+                  {
+                    optionsProduct.map((item, index) => (
+                      <button 
+                        onClick={() => handleClick(item.id, products)}
+                        key={index} 
+                        className={item.id === 2 ? "home-filter__btn btn btn-primary" : "home-filter__btn btn"}
+                      >
+                        {item.title}
+                      </button>
+                    ))
+                  }
+                  <select
+                    className="select-input"
+                    onChange={(event) => {
+                      sortProducts(
+                        products,
+                        event.target.value
+                      );
+                    }}
+                  >
+                    {
+                      options.map((item, index) => (
+                        <option key={index} value={item.value}>{item.title}</option>
+                      )) 
+                    }
+                  </select>
 
-          <div className="home-filter__page">
-            {/* <Pagination 
-              className="home-filter__page-num"
-              style={{display: 'flex', listStyleType: 'none'}} 
-              simple 
-              defaultCurrent={1} 
-              total={products.length} 
-              defaultPageSize={2}
-            /> */}
-            <span className="home-filter__page-num">
-              <span className="home-filter__page-current">1</span>/1
-            </span>
+                  <div className="home-filter__page">
+                    <span className="home-filter__page-num">
+                      <span className="home-filter__page-current">1</span>/1
+                    </span>
 
-            <div className="home-filter__page-control">
-              <div className="home-filter_page-btn home-filter_page-btn--disabled">
-                <i className="home-filter__page-icon fas fa-chevron-left"></i>
-              </div>
-              <div className="home-filter_page-btn ">
-                <i className="home-filter__page-icon fas fa-chevron-right"></i>
-              </div>
+                    <div className="home-filter__page-control">
+                      <div className="home-filter_page-btn home-filter_page-btn--disabled">
+                        <i className="home-filter__page-icon fas fa-chevron-left"></i>
+                      </div>
+                      <div className="home-filter_page-btn ">
+                        <i className="home-filter__page-icon fas fa-chevron-right"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <nav className="mobile-category">
+                    <ul className="mobile-category__list">
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                        <li className="mobile-category__item">
+                            <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
+                        </li>
+                    </ul>
+                </nav>
+
+                {/* <!-- Home Product --> */}
+                <div className="home-product">
+                    <div className="row sm-gutter">
+                      <HomeShopee dataProducts={products}/>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
-        <nav className="mobile-category">
-            <ul className="mobile-category__list">
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-                <li className="mobile-category__item">
-                    <div className="mobile-category__link">Dụng cụ và Thiết bị tiện ích</div>
-                </li>
-            </ul>
-        </nav>
-
-        {/* <!-- Home Product --> */}
-        <div className="home-product">
-            <div className="row sm-gutter">
-              <HomeShopee dataProducts={products}/>
-            </div>
-        </div>
       </div>
+      <FooterShopee/>
     </>
   )
 }
