@@ -242,7 +242,7 @@ const HomeShopee = (props) => {
     return {}
   }
 
-  const handleChange = (e) => {
+  const handleSearch = (e) => {
     const searchString = e.target.value.toLowerCase()
     const filterProduct = data.filter((product) => {
       return (
@@ -254,7 +254,7 @@ const HomeShopee = (props) => {
 
   return (
     <>
-    <HeaderShopee change={handleChange}/>
+    <HeaderShopee change={handleSearch}/>
       <div className="app_container">
         <div className="grid wide">
           <div className="row sm-gutter app__content">

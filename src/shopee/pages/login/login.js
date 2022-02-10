@@ -21,7 +21,7 @@ const Login = () => {
       // lưu token vào localStorage - cookie browser
       helper.saveTokenLocalStorage(token)
       // quay vào trang tìm kiếm
-      history.push('/home')
+      history.push('/')
     } else {
       setErrorLogin('Tài khoản hoặc mật khẩu của bạn không đúng!')
     }
